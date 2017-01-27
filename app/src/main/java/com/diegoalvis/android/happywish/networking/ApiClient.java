@@ -22,6 +22,7 @@ public class ApiClient {
     // Config Timeout for connection
     public final static OkHttpClient okHttpClient = new OkHttpClient.Builder()
             .connectTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(5, TimeUnit.SECONDS)
             .build();
 
     private static Retrofit retrofit = null;
@@ -31,7 +32,6 @@ public class ApiClient {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(okHttpClient)
                     .build();
         }
         return retrofit;

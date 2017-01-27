@@ -1,6 +1,7 @@
 package com.diegoalvis.android.happywish.views;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -33,12 +34,21 @@ public class ResumeAppActivity extends AppCompatActivity {
 
     TextView titleApp, priceApp, authorApp, summaryApp, urlApp;
     ImageView imageApp;
+    private boolean tabletSize;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resume_app);
+
+        // get type of device
+        tabletSize = getResources().getBoolean(R.bool.isTablet);
+        // set Orientation
+        if(tabletSize)
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        else
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // get selected application of intent extras
         Application application = (Application) getIntent().getSerializableExtra(SELECT_APP_KEY);
@@ -60,9 +70,13 @@ public class ResumeAppActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(application.getName()); // Change title
 
-        CollapsingToolbarLayout collapser = (CollapsingToolbarLayout) findViewById(R.id.collapser);
-        collapser.setTitle(application.getName()); // Change title
+        // set title in collapser (toolbar) if isn't tablet
+        if(!tabletSize) {
+            CollapsingToolbarLayout collapser = (CollapsingToolbarLayout) findViewById(R.id.collapser);
+            collapser.setTitle(application.getName()); // Change title
+        }
 
         //load extra and values in views
         loadData(application);
@@ -95,11 +109,7 @@ public class ResumeAppActivity extends AppCompatActivity {
 
         // set app image
         try {
-            Picasso.with(this)
-                    .load(application.getImage())
-                    .placeholder(R.drawable.circle_white_150dp)
-                    .into(imageApp);
-
+            Picasso.with(this).load(application.getImage()).into(imageApp);
         } catch (Exception e) {
             Log.e("ALVIS", "Error al cargar la iamgen");
         }

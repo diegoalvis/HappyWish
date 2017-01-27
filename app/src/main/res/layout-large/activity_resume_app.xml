@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <!-- Toolbar -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:elevation="2dp"
+            app:titleTextColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:theme="@style/ToolbarColoredBackArrow"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        <!-- Imagen del detalle -->
+        <ImageView
+            android:id="@+id/app_image_resume"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foregroundGravity="top"
+            android:fitsSystemWindows="true"
+            android:scaleType="fitXY" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:cardview="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/card_margin"
+        cardview:cardCornerRadius="@dimen/card_corner_radius"
+        cardview:cardElevation="@dimen/card_elevation"
+        android:foreground="?android:attr/selectableItemBackground" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/card_margin"
+            android:padding="@dimen/padding_card_detail"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/app_title_resume"
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryText"
+                android:textSize="@dimen/text_size_app_name_resume"
+                android:text="App name" />
+
+            <TextView
+                android:id="@+id/app_author_resume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/secondaryText"
+                android:drawableTint="@color/light_blue"
+                android:drawablePadding="@dimen/padding_drawable_author"
+                android:drawableLeft="@android:drawable/presence_online"
+                android:text="Author" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/card_body_top_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/app_link_resume"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/text_size_app_url_resume"
+                    android:text="Get it here"/>
+
+                <TextView
+                    android:id="@+id/app_price_resume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/text_size_price_detail"
+                    android:textColor="@color/white"
+                    android:background="@color/gray_2"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:text="FREE"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/app_summary_resume"
+                android:layout_marginTop="@dimen/margin_top_summary_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/primaryText"
+                android:textSize="@dimen/text_size_app_summary_resume"
+                android:text="Summary..."/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    </ScrollView>
+
+
+</LinearLayout>

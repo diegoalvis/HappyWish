@@ -29,4 +29,9 @@
     <dimen name="padding_card_detail">15dp</dimen>
     <dimen name="text_size_price_detail">15sp</dimen>
     <dimen name="margin_top_summary_detail">20dp</dimen>
+    <dimen name="text_size_name_app">25sp</dimen>
+    <dimen name="text_size_app_name_resume">18sp</dimen>
+    <dimen name="padding_drawable_author">5dp</dimen>
+    <dimen name="text_size_app_url_resume">14sp</dimen>
+    <dimen name="text_size_app_summary_resume">14sp</dimen>
 </resources>

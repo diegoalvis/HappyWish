@@ -17,6 +17,13 @@
     <color name="gray_2">#808080</color>
     <color name="gray_3">#cccccc</color>
 
+    <color name="purple">#9E01BE</color>
+    <color name="yellow">#FCFC02</color>
+    <color name="red">#ee0102</color>
+    <color name="orange">#fc7f02</color>
+    <color name="green">#017940</color>
+    <color name="blue">#4040fd</color>
+
 
 
 </resources>

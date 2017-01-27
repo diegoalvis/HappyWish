@@ -7,4 +7,9 @@
     <string name="footer_label_url_app">Get it</string>
     <string name="share">share</string>
     <string name="footer_label_url_cat">See more</string>
+    <string name="msg_no_internet">No Internet access</string>
+    <string name="retry_action">RETRY</string>
+    <string name="reload_action">RELOAD</string>
+    <string name="msg_request_fail">Connection failure</string>
+
 </resources>

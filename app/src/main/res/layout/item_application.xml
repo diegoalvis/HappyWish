@@ -53,6 +53,7 @@
                 android:ellipsize="end"
                 android:textColor="@color/secondaryText"
                 android:drawableTint="@color/light_blue"
+                android:drawablePadding="@dimen/padding_drawable_author"
                 android:drawableLeft="@android:drawable/presence_online"
                 android:text="Author"
                 />

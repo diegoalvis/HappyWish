@@ -22,7 +22,14 @@
     <dimen name="card_element_top_margin">15dp</dimen>
     <dimen name="card_body_top_margin">20dp</dimen>
     <dimen name="card_detail_padding">15dp</dimen>
-    <dimen name="card_margin">5dp</dimen>
+    <dimen name="card_margin">8dp</dimen>
     <dimen name="padding_card_detail">15dp</dimen>
+    <dimen name="text_size_name_app">25sp</dimen>
+    <dimen name="text_size_app_name_resume">24sp</dimen>
+    <dimen name="padding_drawable_author">8dp</dimen>
+    <dimen name="text_size_app_url_resume">18sp</dimen>
+    <dimen name="text_size_app_summary_resume">18sp</dimen>
+    <dimen name="text_size_price_detail">18sp</dimen>
+
 
 </resources>
