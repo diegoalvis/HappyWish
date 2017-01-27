@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Happy Wish</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="free_label">FREE</string>
+    <string name="footer_label_url_app">Get it</string>
+    <string name="share">share</string>
+    <string name="footer_label_url_cat">See more</string>
+</resources>

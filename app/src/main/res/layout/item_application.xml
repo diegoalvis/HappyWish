@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/card_margin"
+    cardview:cardCornerRadius="@dimen/card_corner_radius"
+    cardview:cardElevation="@dimen/card_elevation"
+    android:foreground="?android:attr/selectableItemBackground" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/app_image"
+            android:layout_width="@dimen/civ_app_width"
+            android:layout_height="@dimen/civ_app_height"
+            android:layout_marginLeft="@dimen/card_margin_left"
+            android:layout_marginRight="@dimen/card_margin_left"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/circle_white_150dp"
+            android:elevation="@dimen/card_image_elevation" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/card_content_margin">
+
+            <TextView
+                android:id="@+id/app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:ems="20"
+                android:textSize="@dimen/card_name_size"
+                android:textColor="@color/primaryText"
+                android:text="Name"
+                />
+
+
+            <TextView
+                android:id="@+id/app_author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/secondaryText"
+                android:drawableTint="@color/light_blue"
+                android:drawableLeft="@android:drawable/presence_online"
+                android:text="Author"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/app_category"
+                    android:layout_weight="5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/card_elevation"
+                    android:textSize="@dimen/card_category_size"
+                    android:textColor="@color/primaryText"
+                    android:text="Category"
+                    android:ellipsize="end"
+                    android:maxLines="1"/>
+
+                <TextView
+                    android:id="@+id/app_price"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/card_elevation"
+                    android:textSize="@dimen/card_category_size"
+                    android:textColor="@color/primaryText"
+                    android:text="FREE"
+                    android:gravity="right"
+                    />
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

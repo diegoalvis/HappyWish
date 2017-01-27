@@ -1,0 +1,32 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Templates dimens -->
+    <dimen name="card_corner_radius">5dp</dimen>
+    <dimen name="card_elevation">3dp</dimen>
+    <dimen name="divider_width">0.5dp</dimen>
+    <dimen name="item_padding">10dp</dimen>
+    <dimen name="item_title_margin_bottom">5dp</dimen>
+
+    <!-- Application Card -->
+    <dimen name="card_height">120dp</dimen>
+    <dimen name="card_margin_left">6dp</dimen>
+    <dimen name="civ_app_height">60dp</dimen>
+    <dimen name="civ_app_width">60dp</dimen>
+    <dimen name="card_image_elevation">5dp</dimen>
+    <dimen name="card_content_margin">10dp</dimen>
+    <dimen name="card_name_size">20sp</dimen>
+    <dimen name="card_category_size">16sp</dimen>
+    <dimen name="card_summary_size">12sp</dimen>
+    <dimen name="card_element_top_margin">10dp</dimen>
+    <dimen name="card_body_top_margin">20dp</dimen>
+
+    <!-- Application Detail Card -->
+    <dimen name="card_detail_padding">10dp</dimen>
+    <dimen name="card_margin">5dp</dimen>
+    <dimen name="padding_card_detail">15dp</dimen>
+    <dimen name="text_size_price_detail">15sp</dimen>
+    <dimen name="margin_top_summary_detail">20dp</dimen>
+</resources>
