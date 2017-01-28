@@ -1,17 +1,22 @@
 package com.diegoalvis.android.happywish.views;
 
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
+import android.transition.Slide;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -46,8 +51,6 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private static final int ID_CATEGORY_ALL = -1;
-    private static final int NO_INTERNET = 0;
-    private static final int REQUEST_FAIL = 1;
     private ListAppFragment listAppFragment;
     private ListCatFragment listCatFragment;
 
@@ -67,47 +70,70 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // set an exit transition if current Android version is LOLLIPOP o higher
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setupWindowAnimations();
+        }
+
+        setOrientation();
+        getViews();
+        setupToolbar();
+        loadFragments();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void setupWindowAnimations() {
+        // Re-enter transition is executed when returning to this activity
+        Slide slideTransition = new Slide();
+        slideTransition.setSlideEdge(Gravity.LEFT);
+        slideTransition.setDuration(100); // milliseconds
+        getWindow().setReenterTransition(slideTransition);
+        getWindow().setExitTransition(slideTransition);
+        getWindow().setAllowEnterTransitionOverlap(false);
+        getWindow().setAllowReturnTransitionOverlap(false);
+    }
+
+    private void setOrientation() {
         // get type of device
         tabletSize = getResources().getBoolean(R.bool.isTablet);
         // set Orientation
-        if(tabletSize)
+        if (tabletSize)
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             // get swipe if is smartphone
-            swipeRefreshLayout  = (SwipeRefreshLayout) findViewById(R.id.swipe_main);
+            swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_main);
             swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorAccent));
             swipeRefreshLayout.setOnRefreshListener(this);
         }
+    }
 
-        // get views
+    private void getViews() {
         coordinator         = (CoordinatorLayout) findViewById(R.id.main_content);
         progressBar         = new ProgressBar(this);
         params              = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.gravity      = (Gravity.CENTER);
+    }
 
-        // set Toolbar
+    private void setupToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getString(R.string.app_name));
-
-        // set content fragments
-        loadFragments();
-
     }
-
 
     private void loadFragments() {
         // Initialize fragment categories
         categories = new ArrayList<>();
         listCatFragment = new ListCatFragment();
         listCatFragment.setData(categories);
+        listCatFragment.setAllowEnterTransitionOverlap(false);
 
         // Initialize fragment applications
         applications = new ArrayList<>();
         filteredApps = new ArrayList<>();
         listAppFragment = new ListAppFragment();
         listAppFragment.setData(filteredApps);
+        listAppFragment.setAllowEnterTransitionOverlap(false);
 
         // load fragment view
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -116,6 +142,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             fragmentTransaction.replace(R.id.secondary_content_fragment, listAppFragment);
         fragmentTransaction.commit();
 
+        // get info to inflate lists
         getData();
     }
 
@@ -233,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         if(!tabletSize) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+            fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             fragmentTransaction.replace(R.id.main_content_fragment, listAppFragment).commit();
         }
 
@@ -241,13 +268,16 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     public void onBackPressed() {
-        if(listAppFragment.isVisible()) {
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
-            fragmentTransaction.replace(R.id.main_content_fragment, listCatFragment).commit();
-        }
+        if(tabletSize)
+            super.onBackPressed();
         else {
-            finish();
+            if (listAppFragment.isVisible()) {
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                fragmentTransaction.replace(R.id.main_content_fragment, listCatFragment).commit();
+            } else {
+                finish();
+            }
         }
     }
 

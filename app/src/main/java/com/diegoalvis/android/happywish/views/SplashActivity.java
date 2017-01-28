@@ -97,7 +97,7 @@ public class SplashActivity extends AppCompatActivity {
                 animCircle(circleCenter7);
                 Thread.sleep(ANIMATION_TIME * 3);
                 showLogo();
-                Thread.sleep(ANIMATION_TIME);
+                Thread.sleep(ANIMATION_TIME * 2);
                 goToMainActiviy();
 
             } catch (InterruptedException e) {

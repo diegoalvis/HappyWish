@@ -1,9 +1,12 @@
 package com.diegoalvis.android.happywish.views.fragments;
 
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +20,7 @@ import com.diegoalvis.android.happywish.adapters.AppAdapter;
 import com.diegoalvis.android.happywish.adapters.OnItemClickListener;
 import com.diegoalvis.android.happywish.models.Application;
 import com.diegoalvis.android.happywish.models.Category;
+import com.diegoalvis.android.happywish.utilities.classes.TransitionHelper;
 import com.diegoalvis.android.happywish.views.MainActivity;
 import com.diegoalvis.android.happywish.views.ResumeAppActivity;
 
@@ -81,10 +85,22 @@ public class ListAppFragment extends Fragment implements OnItemClickListener {
 
 
     @Override
-    public void onItemClickApp(Application application) {
+    public void onItemClickApp(Application application, AppAdapter.AppViewHolder holder) {
         Intent intent = new Intent(getActivity(), ResumeAppActivity.class);
         intent.putExtra(ResumeAppActivity.SELECT_APP_KEY, application);
-        startActivity(intent);
+
+        ActivityOptionsCompat transitionActivityOptions = null;
+        // set shared element transitions if current Android version is LOLLIPOP o higher
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            //View sharedView = view;
+            String transitionName = getString(R.string.image_app_name);
+            final Pair<View, String>[] pairs = TransitionHelper.createSafeTransitionParticipants(this.getActivity(), false,
+                    new Pair<>(holder.imageApp, transitionName));
+            transitionActivityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(this.getActivity(), pairs);
+        }
+
+        startActivity(intent, transitionActivityOptions.toBundle());
+        //startActivity(intent);
     }
 
     @Override
@@ -92,3 +108,4 @@ public class ListAppFragment extends Fragment implements OnItemClickListener {
         // Shouldn't be implemented in this scope
     }
 }
+

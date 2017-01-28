@@ -3,15 +3,17 @@ package com.diegoalvis.android.happywish.views;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,8 +34,10 @@ public class ResumeAppActivity extends AppCompatActivity {
 
     private String name, link;
 
-    TextView titleApp, priceApp, authorApp, summaryApp, urlApp;
-    ImageView imageApp;
+    private TextView titleApp, priceApp, authorApp, summaryApp, urlApp;
+    private ImageView imageApp;
+    private Toolbar toolbar;
+
     private boolean tabletSize;
 
 
@@ -42,49 +46,55 @@ public class ResumeAppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resume_app);
 
-        // get type of device
-        tabletSize = getResources().getBoolean(R.bool.isTablet);
-        // set Orientation
-        if(tabletSize)
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        else
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
         // get selected application of intent extras
         Application application = (Application) getIntent().getSerializableExtra(SELECT_APP_KEY);
-
         // set global variables values
         name = application.getName();
         link = application.getLink();
 
-        // get views
+
+        setOrientation();
+        getViews();
+        setupToolbar();
+        loadData(application);
+
+
+    }
+
+    private void setOrientation() {
+        // get type of device
+        tabletSize = getResources().getBoolean(R.bool.isTablet);
+        // set Orientation
+        if (tabletSize) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+        else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            CollapsingToolbarLayout collapser = (CollapsingToolbarLayout) findViewById(R.id.collapser);
+            collapser.setTitle(name); // Change title
+        }
+    }
+
+    private void getViews() {
         titleApp    = (TextView) findViewById(R.id.app_title_resume);
         priceApp    = (TextView) findViewById(R.id.app_price_resume);
         authorApp   = (TextView) findViewById(R.id.app_author_resume);
         summaryApp  = (TextView) findViewById(R.id.app_summary_resume);
         urlApp      = (TextView) findViewById(R.id.app_link_resume);
         imageApp    = (ImageView) findViewById(R.id.app_image_resume);
-
-
-        // set Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(application.getName()); // Change title
-
-        // set title in collapser (toolbar) if isn't tablet
-        if(!tabletSize) {
-            CollapsingToolbarLayout collapser = (CollapsingToolbarLayout) findViewById(R.id.collapser);
-            collapser.setTitle(application.getName()); // Change title
-        }
-
-        //load extra and values in views
-        loadData(application);
-
     }
 
+    private void setupToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(name); // Change title
+    }
+
+
+
     private void loadData(final Application application) {
-        // set app info
+        // set app info in views
         titleApp.setText(application.getTitle());
         authorApp.setText(application.getRights());
         summaryApp.setText(application.getSummary());
@@ -129,7 +139,7 @@ public class ResumeAppActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                finish();
+                onBackPressed();
                 return true;
 
             // Respond to the action bar's share button

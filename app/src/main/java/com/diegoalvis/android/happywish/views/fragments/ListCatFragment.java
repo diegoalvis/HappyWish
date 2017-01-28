@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.diegoalvis.android.happywish.R;
+import com.diegoalvis.android.happywish.adapters.AppAdapter;
 import com.diegoalvis.android.happywish.adapters.CategoryAdapter;
 import com.diegoalvis.android.happywish.adapters.OnItemClickListener;
 import com.diegoalvis.android.happywish.models.Application;
@@ -63,7 +64,7 @@ public class ListCatFragment extends Fragment implements OnItemClickListener {
     }
 
     @Override
-    public void onItemClickApp(Application application) {
+    public void onItemClickApp(Application application, AppAdapter.AppViewHolder holder) {
         // Shouldn't be implemented in this scope
     }
 

@@ -23,6 +23,7 @@
             android:layout_marginRight="@dimen/card_margin_left"
             android:layout_gravity="center_vertical"
             android:background="@drawable/circle_white_150dp"
+            android:transitionName="@string/image_app_name"
             android:elevation="@dimen/card_image_elevation" />
 
         <LinearLayout
@@ -87,10 +88,7 @@
                     android:gravity="right"
                     />
 
-
             </LinearLayout>
-
-
 
         </LinearLayout>
 

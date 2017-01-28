@@ -11,5 +11,6 @@
     <string name="retry_action">RETRY</string>
     <string name="reload_action">RELOAD</string>
     <string name="msg_request_fail">Connection failure</string>
+    <string name="image_app_name">image_app</string>
 
 </resources>

@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import com.diegoalvis.android.happywish.R;
 import com.diegoalvis.android.happywish.models.Application;
-import com.diegoalvis.android.happywish.models.Category;
-import com.diegoalvis.android.happywish.views.fragments.ListCatFragment;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
@@ -61,17 +59,13 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onItemClickApp(applications.get(position));
+                listener.onItemClickApp(applications.get(position), holder);
             }
         });
 
         // Load app image
         try {
-            Picasso.with(context)
-                    .load(application.getImage())
-                    .placeholder(R.drawable.circle_white_150dp)
-                    .into(holder.imageApp);
-
+            Picasso.with(context).load(application.getImage()).placeholder(R.drawable.circle_white_150dp).into(holder.imageApp);
         } catch (Exception e) {
             Log.e("ALVIS", "Error al cargar la iamgen");
         }
@@ -86,7 +80,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
 
     public static class AppViewHolder extends RecyclerView.ViewHolder{
 
-        protected CircleImageView imageApp;
+        public CircleImageView imageApp;
         protected TextView nameApp, authorApp, categoryApp, priceApp;
 
         public AppViewHolder(View v){

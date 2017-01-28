@@ -1,5 +1,7 @@
 package com.diegoalvis.android.happywish.adapters;
 
+import android.view.View;
+
 import com.diegoalvis.android.happywish.models.Application;
 import com.diegoalvis.android.happywish.models.Category;
 
@@ -9,6 +11,6 @@ import com.diegoalvis.android.happywish.models.Category;
 
 // Interface when tap item of list
 public interface OnItemClickListener {
-    void onItemClickApp(Application application);
+    void onItemClickApp(Application application, AppAdapter.AppViewHolder holder);
     void onItemClickCategory(Category category);
 }
