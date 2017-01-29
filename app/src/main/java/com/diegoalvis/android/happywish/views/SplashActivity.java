@@ -1,7 +1,9 @@
 package com.diegoalvis.android.happywish.views;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -24,7 +26,16 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        // get views
+        getViews();
+        setOrientation();
+
+        // start thread of animations
+        AnimationThread animationThread = new AnimationThread();
+        animationThread.start();
+    }
+
+
+    private void getViews() {
         circleCenter1   = (ImageView) findViewById(R.id.center_circle_view_1);
         circleCenter2   = (ImageView) findViewById(R.id.center_circle_view_2);
         circleCenter3   = (ImageView) findViewById(R.id.center_circle_view_3);
@@ -34,12 +45,18 @@ public class SplashActivity extends AppCompatActivity {
         circleCenter7   = (ImageView) findViewById(R.id.center_circle_view_7);
         imageLogo       = (ImageView) findViewById(R.id.image_logo_app);
         nameApp         = (TextView) findViewById(R.id.name_app);
-
-        // start thread of animations
-        AnimationThread animationThread = new AnimationThread();
-        animationThread.start();
     }
 
+
+    private void setOrientation() {
+        // get type of device
+        boolean tabletSize = getResources().getBoolean(R.bool.isTablet);
+        // set Orientation
+        if (tabletSize)
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        else
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
 
     public void animCircle(final ImageView imageView) {
         runOnUiThread(new Runnable() {

@@ -230,6 +230,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             }
             listCatFragment.notifyData();
+            onSelectedCategory(ID_CATEGORY_ALL, "ALL");
         }
         // Cache data
         saveApps();
