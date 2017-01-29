@@ -44,7 +44,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CatVie
 
         holder.nameCat.setText(category.getCategory());
         // set category URL
-        String htmlLink = String.format(context.getString(R.string.footer_label_url_cat) + " <a href='%s'>here</a>", category.getUrl());
+        String htmlLink = String.format(context.getString(R.string.footer_label_url_cat) + " <a href='%s'>" + context.getString(R.string.here_label) + "</a>", category.getUrl());
         holder.urlCat.setText(Html.fromHtml(htmlLink));
         holder.urlCat.setOnClickListener(new View.OnClickListener() {
             @Override

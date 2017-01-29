@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         if (applications.size() > 0) {
             categories.clear();
             // Create All category
-            Category allCat = new Category(ID_CATEGORY_ALL, "ALL", ApiClient.BASE_URL);
+            Category allCat = new Category(ID_CATEGORY_ALL, getString(R.string.category_all), ApiClient.BASE_URL);
             categories.add(allCat);
             List<Integer> categoryIds = new ArrayList<>();
             for (Application application : applications) {
@@ -230,7 +230,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             }
             listCatFragment.notifyData();
-            onSelectedCategory(ID_CATEGORY_ALL, "ALL");
+
+            if(tabletSize)
+                onSelectedCategory(ID_CATEGORY_ALL, getString(R.string.category_all));
         }
         // Cache data
         saveApps();

@@ -32,12 +32,13 @@ import java.util.List;
 
 public class ListAppFragment extends Fragment implements OnItemClickListener {
 
+    private String categoryName;
+
     RecyclerView recyclerView;
     TextView categoryLabel;
 
     private List<Application> applications;
     private AppAdapter adapter;
-    private String categoryName = "ALL";
 
     public ListAppFragment() {
         // Required empty public constructor
@@ -76,6 +77,8 @@ public class ListAppFragment extends Fragment implements OnItemClickListener {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+        if(categoryLabel != null)
+            categoryLabel.setText(categoryName);
     }
 
     public void notifyData(){

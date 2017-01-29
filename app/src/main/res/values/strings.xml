@@ -12,5 +12,8 @@
     <string name="reload_action">RELOAD</string>
     <string name="msg_request_fail">Connection failure</string>
     <string name="image_app_name">image_app</string>
+    <string name="category_all">ALL</string>
+    <string name="here_label">here</string>
+    <string name="categories_label">Categories</string>
 
 </resources>

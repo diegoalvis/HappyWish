@@ -105,7 +105,7 @@ public class ResumeAppActivity extends AppCompatActivity {
             priceApp.setText(R.string.free_label);
 
         // set app URL
-        String htmlLink = String.format(getString(R.string.footer_label_url_app) + " <a href='%s'>here</a>", application.getLink());
+        String htmlLink = String.format(getString(R.string.footer_label_url_app) + " <a href='%s'>" + getString(R.string.here_label) + "</a>", application.getLink());
         urlApp.setText(Html.fromHtml(htmlLink));
         urlApp.setOnClickListener(new View.OnClickListener() {
             @Override

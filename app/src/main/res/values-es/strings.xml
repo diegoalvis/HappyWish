@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="free_label">GRATIS</string>
+    <string name="footer_label_url_app">Obtenla</string>
+    <string name="share">compartir</string>
+    <string name="footer_label_url_cat">Ver mas</string>
+    <string name="msg_no_internet">Sin acceso a Internet</string>
+    <string name="retry_action">REINTENTAR</string>
+    <string name="reload_action">RECARGAR</string>
+    <string name="msg_request_fail">Conexión fallo</string>
+    <string name="category_all">TODO</string>
+    <string name="here_label">aquí</string>
+    <string name="categories_label">Categorías</string>
+
+</resources>
